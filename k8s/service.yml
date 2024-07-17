@@ -5,7 +5,7 @@ metadata:
 spec:
   ports:
     - port: 80
-      targetPort: 8080
+      targetPort: 80
   selector:
     app.kubernetes.io/name: webapp-service
     process: web

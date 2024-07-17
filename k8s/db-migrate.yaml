@@ -1,14 +1,14 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: webapp-migrate
+  name: webapp-service-migrate
   labels:
-    app.kubernetes.io/name: webapp-migrate
+    app.kubernetes.io/name: webapp-service-migrate
 spec:
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: webapp-migrate
+        app.kubernetes.io/name: webapp-service-migrate
     spec:
       containers:
         - command:
@@ -16,7 +16,7 @@ spec:
             - db:migrate
           envFrom:
             - configMapRef:
-                name: webapp
+                name: webapp-service
           image: docker.io/oleholinyk/rubyapp:latest
           imagePullPolicy: IfNotPresent
           name: main

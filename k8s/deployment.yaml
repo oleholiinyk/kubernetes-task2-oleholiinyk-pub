@@ -2,18 +2,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app.kubernetes.io/name: webapp
+    app.kubernetes.io/name: webapp-service
     process: web
-  name: webapp-web
+  name: webapp-service-web
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: webapp
+      app.kubernetes.io/name: webapp-service
       process: web
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: webapp
+        app.kubernetes.io/name: webapp-service
         process: web
     spec:
       containers:
@@ -22,10 +22,10 @@ spec:
               value: "80"
           envFrom:
             - configMapRef:
-                name: webapp
+                name: webapp-service
           image: docker.io/oleholinyk/rubyapp:latest
           imagePullPolicy: IfNotPresent
-          name: webapp-web
+          name: webapp-service-web
           ports:
             - containerPort: 80
               name: http
