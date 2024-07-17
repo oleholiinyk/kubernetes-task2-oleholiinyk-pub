@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: webapp
+data:
+  PORT: "80"
+  RACK_ENV: "development"
+  RAILS_ENV: "development"
+  RAILS_LOG_TO_STDOUT: "true"
+  RAILS_SERVE_STATIC_FILES: "true"
+  SECRET_KEY_BASE: "Qy6VTnREtzwBbzgvxY2LJA5QQwFNex4wUtj2qNTTnSXtHykdZM"
+  DATABASE_ADAPTER: "sqlite3"
+  DATABASE_NAME: "storage/development.sqlite3"
+  DATABASE_USER: ""
+  DATABASE_PASSWORD: ""
+  DATABASE_HOST: ""
+  DATABASE_PORT: ""
