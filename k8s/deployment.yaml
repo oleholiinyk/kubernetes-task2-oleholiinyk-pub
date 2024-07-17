@@ -14,5 +14,6 @@ spec:
     spec:
       containers:
         - name: webapp
+          image: webapp:latest
           ports:
             - containerPort: 80
