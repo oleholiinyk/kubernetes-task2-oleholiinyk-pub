@@ -18,6 +18,6 @@ COPY . .
 RUN RAILS_ENV=production bundle exec rake assets:precompile
 
 # Application port
-EXPOSE 80
+EXPOSE 8080
 
-CMD ["rails", "s", "-b", "0.0.0.0", "-p", "80"]
+CMD ["rails", "s", "-b", "0.0.0.0", "-p", "8080"]
