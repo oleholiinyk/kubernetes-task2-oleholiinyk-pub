@@ -13,7 +13,10 @@ spec:
         app: webapp
     spec:
       containers:
-        - name: ruby
-          image: ruby:latest
+        - name: webapp
+          image: oleholinyk/rubyapp:latest
           ports:
             - containerPort: 80
+          env:
+            - name: RAILS_ENV
+              value: "production"
