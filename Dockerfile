@@ -22,13 +22,14 @@ RUN bundle install
 # Copy the rest of the application code
 COPY . .
 
-## Precompile assets
-#RUN RAILS_ENV=production bundle exec rake assets:precompile
+# Run migrations
+RUN #bin/rails db:migrate || true
+
+# Precompile assets (uncomment if in production)
+# RUN RAILS_ENV=production bundle exec rake assets:precompile
 
 # Expose port 80
 EXPOSE 80
-
-RUN bundle exec rake db:migrate
 
 # Start the application
 CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0", "-p", "80"]
