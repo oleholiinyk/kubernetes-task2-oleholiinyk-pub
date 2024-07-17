@@ -1,22 +1,47 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webapp
+  labels:
+    app.kubernetes.io/name: webapp
+    process: web
+  name: webapp-web
 spec:
-  replicas: 3
   selector:
     matchLabels:
-      app: webapp
+      app.kubernetes.io/name: webapp
+      process: web
   template:
     metadata:
       labels:
-        app: webapp
+        app.kubernetes.io/name: webapp
+        process: web
     spec:
       containers:
-        - name: webapp
-          image: oleholinyk/rubyapp:latest
+        - env:
+            - name: PORT
+              value: "3000"
+          envFrom:
+            - configMapRef:
+                name: webapp
+          image: docker.io/oleholinyk/rubyapp:latest
+          imagePullPolicy: IfNotPresent
+          name: webapp-web
           ports:
-            - containerPort: 80
-          env:
-            - name: RAILS_ENV
-              value: "development"
+            - containerPort: 3000
+              name: http
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /health_check/healthcheck
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 2
+          resources:
+            limits:
+              cpu: "200m"
+              memory: "128Mi"
+            requests:
+              cpu: "150m"
+              memory: "128Mi"
+      restartPolicy: Always

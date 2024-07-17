@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: webapp-migrate
+  labels:
+    app.kubernetes.io/name: webapp-migrate
+spec:
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: webapp-migrate
+    spec:
+      containers:
+        - command:
+            - rails
+            - db:migrate
+          envFrom:
+            - configMapRef:
+                name: webapp
+          image: docker.io/oleholinyk/rubyapp:latest
+          imagePullPolicy: IfNotPresent
+          name: main
+      restartPolicy: Never
