@@ -1,11 +1,22 @@
 FROM ruby:3.3.1
 
 RUN apt-get update -qq && \
-    apt-get install -y postgresql-client && \
+    apt-get install -y postgresql-client \
+    libpq-dev \
+    postgresql \
+    postgresql-contrib && \
     apt-get clean
 
 WORKDIR /app
 ENV RAILS_ENV=development
+
+USER postgres
+
+RUN /etc/init.d/postgresql start \
+    && psql --command "CREATE USER webapp WITH SUPERUSER PASSWORD 'password1';" \
+    && createdb webapp_rb
+
+USER root
 
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
@@ -20,5 +31,3 @@ RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 
 EXPOSE 80
-
-CMD ["rails", "server", "-b", "0.0.0.0"]
