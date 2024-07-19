@@ -1,14 +1,15 @@
 FROM ruby:3.3.1
 
 RUN apt-get update -qq && \
-    apt-get install -y postgresql-client \
+    apt-get install -y  \
+    nodejs \
     libpq-dev \
+    postgresql-client \
     postgresql \
-    postgresql-contrib && \
-    apt-get clean
+    postgresql-contrib \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
-ENV RAILS_ENV=development
 
 USER postgres
 
@@ -21,6 +22,7 @@ USER root
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
 
+RUN gem install bundler
 RUN bundle install
 
 COPY . /app
