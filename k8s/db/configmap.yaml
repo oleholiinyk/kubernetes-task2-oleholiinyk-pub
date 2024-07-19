@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgresql
+data:
+  DATABASE_ADAPTER: "postgresql"
+  DATABASE_ENCODING: "unicode"
+  DATABASE_POOL: "5"
+  DATABASE_NAME: "webapp_rb"
+  DATABASE_USERNAME: "webapp"
+  DATABASE_PASSWORD: "password1"
+  DATABASE_HOST: "postgresql"
+  DATABASE_PORT: "5432"
