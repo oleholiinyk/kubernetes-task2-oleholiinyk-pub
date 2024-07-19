@@ -13,8 +13,8 @@ ENV RAILS_ENV=development
 USER postgres
 
 RUN /etc/init.d/postgresql start \
-    && psql --command "CREATE USER webapp WITH SUPERUSER PASSWORD 'password1';" \
-    && createdb webapp_rb
+    && psql --command "CREATE USER pguser WITH SUPERUSER PASSWORD 'password';" \
+    && createdb webapp_db
 
 USER root
 
