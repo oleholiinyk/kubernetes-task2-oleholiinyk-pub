@@ -5,8 +5,8 @@ metadata:
   labels:
     app.kubernetes.io/name: webapp-service-migrate
 spec:
-  backoffLimit: 4  # Number of retries before considering the Job failed
-  activeDeadlineSeconds: 600  # Maximum time (in seconds) the Job can run
+#  backoffLimit: 4  # Number of retries before considering the Job failed
+#  activeDeadlineSeconds: 600  # Maximum time (in seconds) the Job can run
   template:
     metadata:
       labels:
@@ -24,11 +24,11 @@ spec:
           image: docker.io/oleholinyk/rubyapp:latest
           imagePullPolicy: IfNotPresent
           name: main
-          resources:
-            requests:
-              cpu: "100m"   # Minimum resources requested
-              memory: "128Mi"
-            limits:
-              cpu: "200m"   # Maximum resources allowed
-              memory: "256Mi"
+#          resources:
+#            requests:
+#              cpu: "100m"   # Minimum resources requested
+#              memory: "128Mi"
+#            limits:
+#              cpu: "200m"   # Maximum resources allowed
+#              memory: "256Mi"
       restartPolicy: Never
