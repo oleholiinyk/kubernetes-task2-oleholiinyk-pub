@@ -20,11 +20,11 @@ spec:
         - env:
             - name: PORT
               value: "80"
-          envFrom:
-            - configMapRef:
-                name: webapp-service
-            - configMapRef:
-                name: postgresql
+#          envFrom:
+#            - configMapRef:
+#                name: webapp-service
+#            - configMapRef:
+#                name: postgresql
           image: docker.io/oleholinyk/rubyapp:latest
           imagePullPolicy: IfNotPresent
           name: webapp-service-web
