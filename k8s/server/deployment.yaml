@@ -34,9 +34,9 @@ spec:
               protocol: TCP
           resources:
             limits:
-              cpu: "200m"
-              memory: "128Mi"
+              cpu: "500m"
+              memory: "256Mi"
             requests:
-              cpu: "150m"
+              cpu: "250m"
               memory: "128Mi"
       restartPolicy: Always
