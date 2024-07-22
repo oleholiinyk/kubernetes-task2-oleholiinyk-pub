@@ -13,12 +13,9 @@ spec:
     metadata:
       labels:
         name: webapp
-        process: web
     spec:
       containers:
         - name: webapp
           image: oleholinyk/rubyapp:latest
           ports:
             - containerPort: 3000
-              name: http
-              protocol: TCP
