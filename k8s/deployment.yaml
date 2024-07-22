@@ -1,42 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: webapp
   labels:
-    app.kubernetes.io/name: webapp-service
-    process: web
-  name: webapp-service-web
+    name: webapp
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: webapp-service
-      process: web
+      name: webapp
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: webapp-service
+        name: webapp
         process: web
     spec:
       containers:
-        - env:
-            - name: PORT
-              value: "80"
-#          envFrom:
-#            - configMapRef:
-#                name: webapp-service
-#            - configMapRef:
-#                name: postgresql
-          image: docker.io/oleholinyk/rubyapp:latest
-          imagePullPolicy: IfNotPresent
-          name: webapp-service-web
+        - name: webapp
+          image: oleholinyk/rubyapp:latest
           ports:
-            - containerPort: 80
+            - containerPort: 3000
               name: http
               protocol: TCP
-#          resources:
-#            limits:
-#              cpu: "500m"
-#              memory: "256Mi"
-#            requests:
-#              cpu: "250m"
-#              memory: "128Mi"
-      restartPolicy: Always
