@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: webapp
-          image: oleholinyk/rubyapp:latest
+          image: ponomarenko245/my-rails-app:latest
           ports:
             - containerPort: 3000
