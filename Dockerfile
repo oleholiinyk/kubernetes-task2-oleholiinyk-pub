@@ -30,6 +30,6 @@ COPY . /app
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 
-EXPOSE 80
+EXPOSE 3000
 
 ENTRYPOINT ["/usr/bin/entrypoint.sh"]
